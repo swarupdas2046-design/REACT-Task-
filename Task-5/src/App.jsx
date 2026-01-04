@@ -8,6 +8,7 @@ const App = () => {
     );
     console.log(Response.data[1]);
     setUser(Response.data);
+    
   };
 
   return (
