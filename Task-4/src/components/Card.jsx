@@ -5,13 +5,13 @@ const Card = (props) => {
         let c3 = Math.floor(Math.random()*256)
         
   return (
-    <div 
+    <div  
       key={props.idx}
       className=" h-87.5 w-68  bg-white/10
   backdrop-blur-xl
   rounded-2xl
   shadow-2xl
-  border border-white/20 text-white  flex relative flex-col gap-2.5 p-3 hover:scale-[1.05] transition-all duration-300 ease-linear
+  border border-white/20 text-white  flex relative flex-col gap-2.5 p-3  hover:-translate-y-2  transition delay-100 duration-300 ease-linear
 "
     >
       <img
