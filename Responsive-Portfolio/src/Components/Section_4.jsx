@@ -24,7 +24,7 @@ bg-clip-text  text-transparent"
           <img
             className="h-40 w-75 lg:h-70 lg:w-110 hover:scale-101 transition-all duration-300 ease-linear 
             object-cover rounded-xl"
-            src="/videoframe_9880.png"
+            src="https://i.pinimg.com/736x/cb/fa/72/cbfa72fec5e229172e758f8eab893156.jpg"
             alt=""
           />
         </div>
