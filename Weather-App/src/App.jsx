@@ -24,8 +24,6 @@ const App = () => {
   // };
 
   let Alldata = () => {
-    // setError("");
-
     axios(
       `https://api.openweathermap.org/data/2.5/weather?q=${City}&units=metric&appid=${Api_key}`,
     )
@@ -42,8 +40,7 @@ const App = () => {
       .catch((err) => {
         if (err.response && err.response.status === 404) {
           alert("❌ City not found. Check spelling.");
-        } else {
-          alert("⚠️ Network error. Try again later.");
+          return;
         }
         setweather({});
       });
@@ -51,69 +48,84 @@ const App = () => {
 
   return (
     <div
-      className={`h-full w-full ${dark ? "bg-black text-white" : "bg-amber-100 text-black"} p-5 flex flex-col gap-5 items-center justify-center `}
+      className={`h-full w-full ${dark ? "bg-black text-white" : "bg-amber-200 text-black"} p-3 flex flex-col gap-5 items-center justify-center `}
     >
-      <p>
-        Sorry for the inconvenience actually this app is under development (lekin weather dekh paoge 👀) , abhi
-        mujhe css likhne mein alash araha hain .. nindh arahahain mujhe
-        😭😭{" "}
-      </p>
-
       <button
-        className="px-11 py-3 rounded-3xl bg-red-800 border-none active:scale-95 cursor-pointer"
+        className={`px-11 py-3 rounded-3xl ${dark ? "border-2 border-white  text-white" : "bg-amber-200  text-black border-2 border-black"}  active:scale-95 cursor-pointer text-xl font-bold capitalize`}
         onClick={() => {
           setdark(!dark);
         }}
       >
-        Theme
+        {dark ? "Dark" : "white"}
       </button>
 
-      <h1 className=" text-2xl whitespace-nowrap lg:text-6xl capitalize ">
-        Hello 👋 welcome to weather Forcaster
-      </h1>
-      <form
-        className="flex gap-3"
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (City.trim() == "") {
-            alert("Please Enter City Name");
-          }
-          Alldata();
-        }}
+      <div
+        className={` lg:w-fit w-full ${dark ? "bg-linear-to-t from-sky-500 to-indigo-500" : "bg-linear-to-tl/srgb from-indigo-500 to-teal-400"}  flex gap-4 flex-col py-4 rounded-xl`}
       >
-        <input
-          value={City}
-          onChange={(e) => {
-            setCity(e.target.value);
-          }}
-          type="text"
-          placeholder="Enter City Name"
-          className={`p-3 border-none rounded-3xl pl-7  outline-none ${dark ? "bg-gray-600 text-white" : "bg-pink-500 text-black"} text-2xl`}
-        />
-        <img
-          src={search}
-          className="p-3 rounded-full bg-white"
-          onClick={() => {
+        <form
+          className="flex gap-2 bg-d-900  "
+          onSubmit={(e) => {
+            e.preventDefault();
             if (City.trim() == "") {
               alert("Please Enter City Name");
+              return;
             }
             Alldata();
           }}
-        />
-      </form>
-      {/* <button onClick={Alldata} className="p-5 border-2 rounded-3xl outline-none text-white text-2xl">Confirm</button> */}
-      <h1 className="text-2xl"> City -- {weather.Location}</h1>
-      <h1 className="text-2xl"> temparature -- {weather.temprature}°C </h1>
-      <h1 className="text-2xl"> humadity -- {weather.humidity} % </h1>
-      <h1 className="text-2xl"> windspeed -- {weather.windspeed} km/h </h1>
+        >
+          <input
+            value={City}
+            onChange={(e) => {
+              setCity(e.target.value);
+            }}
+            type="text"
+            placeholder="Enter City Name"
+            className={`p-3 border-none rounded-3xl pl-7 ml-2 outline-none ${dark ? "bg-gray-600 text-white" : "bg-pink-400 text-black"} text-2xl`}
+          />
+          <img
+            src={search}
+            className={`${dark ? "bg-gray-200 " : "bg-pink-400"}  w-12 p-3 rounded-full `}
+            onClick={() => {
+              if (City.trim() == "") {
+                alert("Please Enter City Name");
+              }
+              Alldata();
+            }}
+          />
+        </form>
 
-      {weather.icon && (
-        <img
-          className="w-20 h-20"
-          src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
-          alt="weather icon"
-        />
-      )}
+        {/* <button onClick={Alldata} className="p-5 border-2 rounded-3xl outline-none text-white text-2xl">Confirm</button> */}
+        <div className="flex flex-col items-center gap-5 p-5 mb-8">
+          {weather.icon && (
+            <img
+              className="w-50 object-cover"
+              src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
+              alt="weather icon"
+            />
+          )}
+
+          <h1 className="text-5xl font-semibold">{weather.temprature}°C</h1>
+          <h1 className="text-5xl font-semibold ">{weather.Location}</h1>
+        </div>
+
+        <div className="flex gap-10">
+          <div className="flex gap-5 ml-2 mr-4">
+            <img src={humidity} className="w-10" alt="" />
+            <div>
+              <h1 className="text-2xl">{weather.humidity} % </h1>
+              <h1 className="text-xl"> Humidity </h1>
+            </div>
+          </div>
+
+          <div className="flex gap-5">
+            <img src={wind} className="w-10" alt="" />
+            <div>
+              <h1 className="text-2xl"> {weather.windspeed} km/h </h1>
+              <h1 className="text-xl"> windspeed</h1>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
