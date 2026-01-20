@@ -60,7 +60,7 @@ const App = () => {
       </button>
 
       <div
-        className={` lg:w-fit w-full ${dark ? "bg-linear-to-t from-sky-500 to-indigo-500" : "bg-linear-to-tl/srgb from-indigo-500 to-teal-400"}  flex gap-4 flex-col py-4 rounded-xl`}
+        className={` sm:w-fit w-full ${dark ? "bg-linear-to-t from-sky-500 to-indigo-500" : "bg-linear-to-tl/srgb from-indigo-500 to-teal-400"}  flex gap-4 flex-col py-4 rounded-xl`}
       >
         <form
           className="flex gap-2 bg-d-900  "
