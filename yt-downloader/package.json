@@ -1,0 +1,14 @@
+{
+  "name": "yt-downloader",
+  "version": "1.0.0",
+  "description": "StreamSave - YouTube Downloader (React + Node.js)",
+  "scripts": {
+    "setup": "cd backend && npm install && cd ../frontend && npm install",
+    "backend": "cd backend && node server.js",
+    "frontend": "cd frontend && npm run dev",
+    "start": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
