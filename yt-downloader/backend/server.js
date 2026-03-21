@@ -118,6 +118,15 @@ app.get('/api/download', async (req, res) => {
     }
   }
 });
+// Keep alive - ping every 14 minutes
+setInterval(async () => {
+  try {
+    const https = require('https')
+    https.get(process.env.RENDER_EXTERNAL_URL || 'https://snaptube-pro-backend-crur.onrender.com')
+    console.log('Keep-alive ping sent')
+  } catch(e) {}
+}, 14 * 60 * 1000)
+
 
 app.listen(PORT, () => {
   console.log(`\n✅ SnapTube Pro running on http://localhost:${PORT}\n`);
