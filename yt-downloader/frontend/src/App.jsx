@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import './App.css'
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:5000'
-
+const API = 'https://snaptube-pro-backend-crur.onrender.com'
 // ── Theme Toggle Button ──────────────────────────────────────
 function ThemeToggle({ dark, onToggle }) {
   return (
